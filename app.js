@@ -1,6 +1,5 @@
 var http = require('http'); //Used for HTTP
 const port = 80 //port number web app is hosted
-const host = '172.17.0.1'
 
 
 var app = http.createServer(function(req,res){  //HTTP implementation
@@ -12,4 +11,4 @@ var app = http.createServer(function(req,res){  //HTTP implementation
     }));
 });
 
-app.listen(port, host); //used to bind and listen the connections on the specified host and port
+app.listen(port); //used to bind and listen the connections on the specified host and port
