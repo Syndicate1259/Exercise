@@ -1,6 +1,6 @@
 var http = require('http'); //Used for HTTP
 const port = 80 //port number web app is hosted
-const host = '127.0.0.1'
+const host = '172.17.0.1'
 
 
 var app = http.createServer(function(req,res){  //HTTP implementation
