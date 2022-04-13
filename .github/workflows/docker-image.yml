@@ -19,6 +19,8 @@ jobs:
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    - name: run tests
+      uses: liatrio/github-actions/apprentice-action@master
     - name: Push
       uses: docker/build-push-action@v2
       with:
