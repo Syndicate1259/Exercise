@@ -1,5 +1,5 @@
 var http = require('http'); //Used for HTTP
-const port = 3000 //port number web app is hosted
+const port = 80 //port number web app is hosted
 
 
 
