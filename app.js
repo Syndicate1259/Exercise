@@ -13,5 +13,4 @@ var app = http.createServer(function(req,res){  //HTTP implementation
 });
 
 app.listen(port, () => { //used to bind and listen the connections on the specified host and port
-  console.log(`Example app listening on port ${port}`)
 })
