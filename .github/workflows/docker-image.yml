@@ -22,7 +22,7 @@ jobs:
         username: ${{ secrets.DOCKER_HUB_USERNAME }}
         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 #        registry: gcr.io/syndicate1259
-        image: ghcr.io/<syndicate1259>/exercise:latest
+        image: ghcr.io/<syndicate1259>/exercise
   
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag exercise:latest
