@@ -22,13 +22,6 @@ jobs:
         docker build . --file Dockerfile --tag exercise:latest
         docker run -p 80:80 -d exercise:latest
         
-#    - uses: addnab/docker-run-action@v3
-#      with:
-#        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-#        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-#        image: exercise:latest
-  
-    
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
     - name: Push
