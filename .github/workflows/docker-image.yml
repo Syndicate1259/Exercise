@@ -48,5 +48,5 @@ jobs:
       run: |-
         gcloud run deploy $SERVICE \
           --region us-west-1 \
-          --image docker.io/repository/docker/syndicate1259/exercise:latest \
+          --image gcr.io/cloudrun/placeholder \
           --platform managed \
