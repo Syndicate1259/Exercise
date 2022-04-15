@@ -32,6 +32,6 @@ jobs:
       uses: liatrio/github-actions/apprentice-action@master
       
     - name: Push
-      run: docker push $DOCKER_USER/$repo-name:latest
+      run: docker push $DOCKER_USER/exercise:latest
 
 
