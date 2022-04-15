@@ -8,6 +8,9 @@ on:
     
 env:
     PROJECT_ID: ${{ secrets.GCP_PROJECT_ID }}
+    DOCKER_USER: ${{secrets.DOCKER_USER}}
+    DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+    REPO_NAME: ${{secrets.REPO_NAME}}
     
 jobs:
   build:
@@ -29,20 +32,6 @@ jobs:
       uses: liatrio/github-actions/apprentice-action@master
       
     - name: Push
-      run: docker push syndicate1259/exercise:latest
+      run: docker push $DOCKER_USER/$REPO_NAME:latest
 
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
-      with:
-        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-
-    - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v0'
-
-    - name: 'Use gcloud CLI'
-      run: |-
-        gcloud run deploy $SERVICE \
-          --region us-west-1 \
-          --image docker.io/repository/docker/syndicate1259/exercise \
-          --platform managed \
 
