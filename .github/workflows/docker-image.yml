@@ -37,10 +37,10 @@ jobs:
 
     - uses: actions/checkout@v3
     - name: Setup
-    - uses: ./Dockerfile
     # Setup gcloud CLI
     - uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
       with:
+          file: ./Dockerfile
           version: '275.0.0'
           service_account_email: ${{ secrets.SA_EMAIL }}
           service_account_key: ${{ secrets.GCP_SA_KEY}}
