@@ -48,6 +48,6 @@ jobs:
       run: |-
         gcloud run deploy $SERVICE \
           --region us-west-1 \
-          --image us.gcr.io/rich-honor-347006/exercise/exercise \
+          --image us.gcr.io/rich-honor-347006/exercise/exercise:b02b00e572273bbb8066146b5cee1bc44dc09e8a \
           --platform managed \        
 
