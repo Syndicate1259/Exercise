@@ -34,9 +34,6 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/exercise:latest
-        
-    - name: Checkout
-      uses: actions/checkout@v3
 
     # Setup gcloud CLI
     - uses: GoogleCloudPlatform/github-actions/setup-gcloud@v0
@@ -49,15 +46,11 @@ jobs:
     - name: gcloud Set up
       run: |
           gcloud config set project rich-honor-347006
-    # Build and push image to Google Container Registry
-    - name: Build
-      run: |
-          gcloud builds submit -t gcr.io/rich-honor-347006/$SERVICE_NAME:$GITHUB_SHA
     # Deploy image to Cloud Run
     - name: Deploy
       run: |
           gcloud run deploy $SERVICE_NAME \
             --region $RUN_REGION \
-            --image gcr.io/$PROJECT_ID/$SERVICE_NAME:$GITHUB_SHA \
+            --image index.docker.io/repository/docker/syndicate1259/exercise \
             --platform managed        
 
