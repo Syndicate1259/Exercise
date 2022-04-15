@@ -34,9 +34,12 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/exercise:latest
+
     - uses: actions/checkout@v3
+    - name: Setup
+    - uses: ./Dockerfile
     # Setup gcloud CLI
-    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@v0
+    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@main
       with:
           version: '275.0.0'
           service_account_email: ${{ secrets.SA_EMAIL }}
