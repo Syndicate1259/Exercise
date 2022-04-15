@@ -8,6 +8,7 @@ on:
     
 env:
     SERVICE: 'exercise'
+    IMAGE: ${{secrets.GCP_IMAGE}}
     
 jobs:
   build:
@@ -35,3 +36,19 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: ${{ secrets.DOCKER_HUB_USERNAME }}/exercise:latest
+        
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v0'
+      with:
+        credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
+    - name: 'Set up Cloud SDK'
+      uses: 'google-github-actions/setup-gcloud@v0'
+
+    - name: 'Use gcloud CLI'
+      run: |-
+        gcloud run deploy $SERVICE \
+          --region us-west-1 \
+          --image $IMAGE \
+          --platform managed \        
+
