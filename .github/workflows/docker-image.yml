@@ -7,7 +7,7 @@ on:
     branches: [ main ]
     
 env:
-    SERVICE: 'dockerhub'
+    SERVICE: 'exercise'
     
 jobs:
   build:
