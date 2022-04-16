@@ -49,6 +49,6 @@ jobs:
       run: |-
         gcloud run deploy $SERVICE \
           --region us-west-1 \
-          --image docker.io/repository/docker/$repo-name/exercise \
+          --image docker.io/$repo-name/exercise \
           --platform managed \
  
