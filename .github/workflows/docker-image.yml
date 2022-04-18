@@ -7,7 +7,7 @@ on:
     branches: [ main ]
     
 env:
-    SERVICE: 'exercises'
+    SERVICE: 'exercise'
     repo-name: 'syndicate1259'
     
 jobs:
