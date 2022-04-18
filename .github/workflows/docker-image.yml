@@ -8,7 +8,6 @@ on:
     
 env:
     SERVICE: 'exercise'
-    repo-name: 'syndicate1259'
     saccount: ${{secrets.GCP_SERVICE_ACCOUNT}}
     
 jobs:
