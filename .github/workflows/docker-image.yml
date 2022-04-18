@@ -9,6 +9,7 @@ on:
 env:
     SERVICE: 'exercise'
     repo-name: 'syndicate1259'
+    saccount: ${{secrets.GCP_SERVICE_ACCOUNT}}
     
 jobs:
   build:
@@ -51,4 +52,5 @@ jobs:
           --region us-west1 \
           --image docker.io/syndicate1259/exercise \
           --platform managed \
+          --service-account=$saccount \
  
