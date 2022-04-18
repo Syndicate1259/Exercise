@@ -49,6 +49,6 @@ jobs:
       run: |-
         gcloud run deploy $SERVICE \
           --region us-west1 \
-          --image docker.io/syndicate1259/exercise \
+          --image us.gcr.io/rich-honor-347006/exercise/exercises \
           --platform managed \
  
