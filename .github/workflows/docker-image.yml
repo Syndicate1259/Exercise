@@ -50,7 +50,7 @@ jobs:
       run: |-
         gcloud run deploy $SERVICE \
           --region us-west1 \
-          --image docker.io/syndicate1259/exercise \
+          --image docker.io/syndicate1259/exercise:latest \
           --platform managed \
           --service-account=$saccount \
  
