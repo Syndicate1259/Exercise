@@ -39,7 +39,7 @@ jobs:
     - name: 'Push to Google Container Registry'
       uses: RafikFarhad/push-to-gcr-github-action@v4
       with:
-        gcloud_service_key: ${{ secrets.GCP_CREDENTIALS}}
+        gcloud_service_key: ${{ secrets.GCP_SA_KEY}}
         registry: gcr.io
         project_id: $PROJECT_ID
         image_name: $IMAGE_NAME
