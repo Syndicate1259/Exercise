@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Build, Run, Verify, Deploy
 
 on:
   push:
@@ -16,27 +16,19 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Login to Docker Hub
-      uses: docker/login-action@v1
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
     - name: Build the Docker image
       run: |
         docker build . --file Dockerfile --tag exercise:latest
         docker run -p 80:80 -d exercise:latest
-        
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
-      
-    - name: Push
-      uses: docker/build-push-action@v2
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: ${{ secrets.DOCKER_HUB_USERNAME }}/exercise:latest
-        
+    - name: Build
+      run: |
+        export TAG=`echo $GITHUB_REF | awk -F/ '{print $NF}'`
+        echo $TAG
+        docker build -t "$REGISTRY_HOSTNAME"/"$IMAGE":"$TAG" \
+          --build-arg GITHUB_SHA="$GITHUB_SHA" \
+          --build-arg GITHUB_REF="$GITHUB_REF" .
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
@@ -44,11 +36,16 @@ jobs:
 
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v0'
-
+    - name: Configure docker for GCP
+      run: gcloud auth configure-docker
+    - name: Build docker image
+      run:  docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest .
+    - name: Push to Google Container Registry
+      run:  docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest 
     - name: 'Use gcloud CLI'
       run: |-
         gcloud run deploy $SERVICE \
           --region us-west1 \
-          --image registry.hub.docker.com/syndicate1259/exercise:latest \
+          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest \
           --platform managed \
           --service-account=$saccount \
