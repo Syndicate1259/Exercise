@@ -27,14 +27,14 @@ jobs:
       uses: 'google-github-actions/auth@v0'
       with:
         credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
-
+    - name: 'Auth login'
+      run: gcloud auth login
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v0'
       
     - name: 'Configure docker for GCP'
       run: gcloud auth configure-docker
-    - name: 'Aith login'
-      run: gcloud auth login
+
       
     - name: 'Enable necessary resources'
       run: 
