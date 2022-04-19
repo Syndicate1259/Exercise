@@ -32,9 +32,10 @@ jobs:
       uses: 'google-github-actions/setup-gcloud@v0'
       
     - name: 'Configure docker for GCP'
-      run: |
-        gcloud auth configure-docker
-        gcloud auth login
+      run: gcloud auth configure-docker
+    - name: 'Aith login'
+      run: gcloud auth login
+      
     - name: 'Enable necessary resources'
       run: 
         gcloud services enable cloudbuild.googleapis.com run.googleapis.com containerregistry.googleapis.com 
