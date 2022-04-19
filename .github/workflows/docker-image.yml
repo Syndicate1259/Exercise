@@ -37,7 +37,9 @@ jobs:
   
 
     - name: 'Push to Google Container Registry'
-      run: docker push $IMAGE_NAME
+      run: |-
+        docker build . -t $IMAGE_NAME
+        docker push $IMAGE_NAME
         
     - name: 'Use gcloud CLI'
       run: |-
