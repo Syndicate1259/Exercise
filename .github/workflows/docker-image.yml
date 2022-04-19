@@ -39,15 +39,15 @@ jobs:
       run: |-
         gcloud projects add-iam-policy-binding $PROJECT_ID \
         --member=serviceAccount:$saccount \
-        --role=roles/run.admin 
+        --role='roles/run.admin' 
 
         gcloud projects add-iam-policy-binding $PROJECT_ID \
         --member=serviceAccount:$saccount \
-        --role=roles/storage.admin
+        --role='roles/storage.admin'
 
         gcloud projects add-iam-policy-binding $PROJECT_ID \
         --member=serviceAccount:$saccount \
-        --role=roles/iam.serviceAccountUser
+        --role='roles/iam.serviceAccountUser'
         
     - name: 'Build docker image'
       run:  docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest .
