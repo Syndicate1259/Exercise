@@ -10,6 +10,7 @@ env:
     SERVICE: 'exercise'
     saccount: ${{secrets.GCP_SERVICE_ACCOUNT}}
     PROJECT_ID: ${{secrets.GCP_PROJECT_ID}}
+    IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -18,8 +19,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag exercise:latest
-        docker run -p 80:80 -d exercise:latest
+        docker build . -t $IMAGE_NAME
+        docker run -p 80:80 $IMAGE_NAME
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
       
@@ -30,28 +31,21 @@ jobs:
 
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v0'
+      with:
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        service_account_email: ${{ secrets.GCP_EMAIL }}
+        service_account_key: ${{ secrets.GCP_CREDENTIALS }}
       
     - name: 'Configure docker for GCP'
       run: gcloud auth configure-docker
-    - name: 'Give Permissions to Service'
-      run: |-
-        gcloud projects add-iam-policy-binding $PROJECT_ID \
-        --member='serviceAccount:$saccount' \
-        --role='roles/run.admin'
-        gcloud projects add-iam-policy-binding $PROJECT_ID \
-        --member='serviceAccount:$saccount' \
-        --role='roles/storage.admin'
-        gcloud projects add-iam-policy-binding $PROJECT_ID \
-        --member='serviceAccount:$saccount' \
-        --role='roles/iam.serviceAccountUser'
-    - name: 'Build docker image'
-      run:  docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest .
+  
+
     - name: 'Push to Google Container Registry'
-      run:  docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest 
+      run:  docker push $IMAGE_NAME
     - name: 'Use gcloud CLI'
       run: |-
         gcloud run deploy $SERVICE \
           --region us-west1 \
-          --image gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest \
+          --image $IMAGE_NAME \
           --platform managed \
           --service-account=$saccount \
