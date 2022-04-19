@@ -9,7 +9,6 @@ on:
 env:
     SERVICE: 'exercise'
     saccount: ${{secrets.GCP_SERVICE_ACCOUNT}}
-    
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -22,13 +21,7 @@ jobs:
         docker run -p 80:80 -d exercise:latest
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
-    - name: Build
-      run: |
-        export TAG=`echo $GITHUB_REF | awk -F/ '{print $NF}'`
-        echo $TAG
-        docker build -t "$REGISTRY_HOSTNAME"/"$IMAGE":"$TAG" \
-          --build-arg GITHUB_SHA="$GITHUB_SHA" \
-          --build-arg GITHUB_REF="$GITHUB_REF" .
+      
     - id: 'auth'
       uses: 'google-github-actions/auth@v0'
       with:
@@ -36,11 +29,12 @@ jobs:
 
     - name: 'Set up Cloud SDK'
       uses: 'google-github-actions/setup-gcloud@v0'
-    - name: Configure docker for GCP
+      
+    - name: 'Configure docker for GCP'
       run: gcloud auth configure-docker
-    - name: Build docker image
+    - name: 'Build docker image'
       run:  docker build -t gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest .
-    - name: Push to Google Container Registry
+    - name: 'Push to Google Container Registry'
       run:  docker push gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest 
     - name: 'Use gcloud CLI'
       run: |-
