@@ -7,7 +7,8 @@ var app = http.createServer(function(req,res){  //HTTP implementation
     res.setHeader('Content-Type', 'application/json');
     res.end(JSON.stringify({
       message: "My name is Jose Sanchez" ,
-      timestamp: unix_epoch
+      timestamp: unix_epoch,
+      title: "Student"
     }));
 });
 
