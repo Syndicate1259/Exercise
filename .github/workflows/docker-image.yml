@@ -10,7 +10,7 @@ env:
     SERVICE: 'exercise'
     saccount: ${{secrets.GCP_SERVICE_ACCOUNT}}
     PROJECT_ID: ${{secrets.GCP_PROJECT_ID}}
-    IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise/exercise:latest
+    IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -37,13 +37,7 @@ jobs:
   
 
     - name: 'Push to Google Container Registry'
-      uses: RafikFarhad/push-to-gcr-github-action@v4
-      with:
-        gcloud_service_key: ${{ secrets.GCP_SA_KEY}}
-        registry: gcr.io
-        project_id: $PROJECT_ID
-        image_name: $IMAGE_NAME
-        push_only: true
+      run: docker push $IMAGE_NAME
         
     - name: 'Use gcloud CLI'
       run: |-
