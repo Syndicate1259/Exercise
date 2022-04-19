@@ -9,7 +9,7 @@ on:
 env:
     SERVICE: 'exercise'
     saccount: ${{secrets.GCP_SERVICE_ACCOUNT}}
-
+    PROJECT_ID: ${{secrets.GCP_PROJECT_ID}}
 jobs:
   build:
     runs-on: ubuntu-latest
