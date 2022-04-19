@@ -19,8 +19,8 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       run: |
-        docker build -t $IMAGE_NAME .
-        docker run $IMAGE_NAME
+        docker build . --file Dockerfile --tag exercise:latest
+        docker run -p 80:80 -d exercise:latest
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
       
