@@ -35,9 +35,6 @@ jobs:
       run: gcloud auth configure-docker
 
       
-    - name: 'Enable necessary resources'
-      run: 
-        gcloud services enable cloudbuild.googleapis.com run.googleapis.com containerregistry.googleapis.com 
     - name: 'Give Permissions to Service'
       run: |-
         gcloud projects add-iam-policy-binding $PROJECT_ID \
