@@ -18,9 +18,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: |
-        docker build . --file Dockerfile --tag exercise:latest
-        docker run -p 80:80 -d exercise:latest
+      run: |-
+       docker build -t $IMAGE_NAME .    
+       docker run -p 80:80 -d $IMAGE_NAME
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
       
@@ -35,10 +35,8 @@ jobs:
     - name: 'Configure docker for GCP'
       run: gcloud auth configure-docker
   
-
     - name: 'Push to Google Container Registry'
       run: |-
-        docker build . -t $IMAGE_NAME
         docker push $IMAGE_NAME
         
     - name: 'Use gcloud CLI'
