@@ -12,8 +12,7 @@ env:
     SACCOUNT: ${{secrets.GCP_SERVICE_ACCOUNT}}
     PROJECT_ID: ${{secrets.GCP_PROJECT_ID}}
     IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest
-    CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,7 +31,7 @@ jobs:
     - name: 'Authenticate to Google Cloud'
       uses: google-github-actions/auth@v0
       with:
-        credentials_json: $CREDENTIALS
+        credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
     - name: 'Set up Cloud SDK'
       uses: google-github-actions/setup-gcloud@v0
