@@ -8,23 +8,28 @@ on:
     
 env:
     SERVICE: 'exercise'
+    REGION: 'us-west1'
     saccount: ${{secrets.GCP_SERVICE_ACCOUNT}}
     PROJECT_ID: ${{secrets.GCP_PROJECT_ID}}
     IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest
+    
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+    - name: 'Check-out repository'
     - uses: actions/checkout@v3
+    
     - name: Build the Docker image
       run: |-
        docker build -t $IMAGE_NAME .    
        docker run -p 80:80 -d $IMAGE_NAME
+       
     - name: run tests
       uses: liatrio/github-actions/apprentice-action@master
       
-    - id: 'auth'
+    - name: 'Authenticate to Google Cloud'
       uses: 'google-github-actions/auth@v0'
       with:
         credentials_json: ${{ secrets.GCP_CREDENTIALS }}
@@ -41,7 +46,7 @@ jobs:
     - name: 'Use gcloud CLI'
       run: |-
         gcloud run deploy $SERVICE \
-          --region us-west1 \
+          --region $REGION \
           --image $IMAGE_NAME \
           --platform managed \
           --service-account=$saccount \
