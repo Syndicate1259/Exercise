@@ -1,4 +1,4 @@
-name: Build, Run, Verify, Deploy
+name: 'Build, Run, Verify, Deploy'
 
 on:
   push:
@@ -8,43 +8,44 @@ on:
     
 env:
     SERVICE: 'exercise'
-    saccount: ${{secrets.GCP_SERVICE_ACCOUNT}}
+    REGION: 'us-west1'
+    SACCOUNT: ${{secrets.GCP_SERVICE_ACCOUNT}}
     PROJECT_ID: ${{secrets.GCP_PROJECT_ID}}
     IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/exercise:latest
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: |
-        docker build . --file Dockerfile --tag exercise:latest
-        docker run -p 80:80 -d exercise:latest
-    - name: run tests
+    
+    - name: 'Build the Docker Image'
+      run: |-
+       docker build -t $IMAGE_NAME .    
+       docker run -p 80:80 -d $IMAGE_NAME
+       
+    - name: 'Verify App Functionality'
       uses: liatrio/github-actions/apprentice-action@master
       
-    - id: 'auth'
-      uses: 'google-github-actions/auth@v0'
+    - name: 'Authenticate to Google Cloud'
+      uses: google-github-actions/auth@v0
       with:
         credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
     - name: 'Set up Cloud SDK'
-      uses: 'google-github-actions/setup-gcloud@v0'
+      uses: google-github-actions/setup-gcloud@v0
       
     - name: 'Configure docker for GCP'
       run: gcloud auth configure-docker
   
-
     - name: 'Push to Google Container Registry'
-      run: |-
-        docker build . -t $IMAGE_NAME
-        docker push $IMAGE_NAME
+      run: docker push $IMAGE_NAME
         
     - name: 'Use gcloud CLI'
       run: |-
         gcloud run deploy $SERVICE \
-          --region us-west1 \
+          --region $REGION \
           --image $IMAGE_NAME \
           --platform managed \
-          --service-account=$saccount \
+          --service-account=$SACCOUNT \
