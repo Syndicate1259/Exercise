@@ -22,7 +22,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/github_username/repo_name">
+  <a href="https://github.com/Syndicate1259/exercise">
     <img src="https://cdn.pixabay.com/photo/2018/02/12/13/58/devops-3148393_960_720.png" alt="Logo" width="400" height="250"> 
   </a>
   <!-- Image Source: https://pixabay.com/illustrations/devops-business-process-improvement-3148393/-->
@@ -71,16 +71,8 @@ Project Link: [https://github.com/Syndicate1259/exercise](https://github.com/Syn
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
 [license-shield]: https://img.shields.io/github/license/Syndicate1259/exercise.svg?style=for-the-badge
-[license-url]: https://github.com/Syndicate1259/exercise/blob/master/LICENSE.txt
+[license-url]:     https://github.com/Syndicate1259/exercise/blob/main/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/jose-sanchez-9b7141140
