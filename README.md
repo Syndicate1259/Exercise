@@ -72,7 +72,7 @@ Project Link: [https://github.com/Syndicate1259/exercise](https://github.com/Syn
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [license-shield]: https://img.shields.io/github/license/Syndicate1259/exercise.svg?style=for-the-badge
-[license-url]:     https://github.com/Syndicate1259/exercise/blob/main/LICENSE.txt
+[license-url]: https://github.com/Syndicate1259/exercise/blob/main/LICENSE.txt
 
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/jose-sanchez-9b7141140
@@ -81,7 +81,7 @@ Project Link: [https://github.com/Syndicate1259/exercise](https://github.com/Syn
 [Github-url]: https://github.org/
 
 [Git]: https://img.shields.io/badge/git-000000?style=for-the-badge&logo=git
-[Git-url]: https://github.org/
+[Git-url]: https://git-scm.com/
 
 [GithubA]: https://img.shields.io/badge/github_actions-000000?style=for-the-badge&logo=githubactions
 [GithubA-url]: https://github.org/
