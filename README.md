@@ -34,8 +34,6 @@
 
 This was a take-home exercise for an Apprenticeship Interview at a local DevOps company. The exercise asked to "Create a simple web app which exposes a HTTP API endpoint and use a CI/CD pipeline to containerize it and deploy it to a cloud platform". The exercise focused more on my problem-solving skills and communication with other employees on Slack.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ### Utilized
 
 * [![Node][Node.js]][Node-url]
@@ -47,14 +45,10 @@ This was a take-home exercise for an Apprenticeship Interview at a local DevOps 
 * [![GCP][GCP]][GCP-url]
 * [![GCR][GCR]][GCR-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
